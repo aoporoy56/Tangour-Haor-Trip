@@ -4,39 +4,49 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Tour Dashboard</title>
+<title>Trip Dashboard</title>
 
 <style>
+:root{
+  --bg:#f4f6fb;
+  --card:#ffffff;
+  --text:#0f172a;
+  --muted:#64748b;
+  --accent:#4f46e5;
+  --border:#e5e7eb;
+
+  --green:#16a34a;
+  --red:#dc2626;
+  --yellow:#d97706;
+}
+
 *{
   margin:0;
   padding:0;
   box-sizing:border-box;
+  font-family: system-ui;
 }
 
 body{
-  font-family: 'Segoe UI', sans-serif;
-  background: linear-gradient(135deg, #eef2ff, #f8fafc);
-  padding:15px;
-  color:#1f2937;
+  background:var(--bg);
+  color:var(--text);
+  padding:20px;
 }
 
-/* HEADER */
 h1{
   text-align:center;
-  margin:15px 0 25px;
-  font-size:28px;
-  background: linear-gradient(90deg,#6366f1,#06b6d4);
-  -webkit-background-clip:text;
-  -webkit-text-fill-color:transparent;
+  font-size:24px;
+  margin-bottom:18px;
 }
 
 h2{
-  margin:20px 0 10px;
-  font-size:18px;
-  color:#111827;
+  font-size:12px;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  color:var(--muted);
+  margin:18px 0 10px;
 }
 
-/* GRID */
 .grid{
   display:grid;
   gap:12px;
@@ -44,28 +54,50 @@ h2{
 
 /* MEMBERS */
 .members-grid{
-  grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
 }
 
 .member-card{
-  background:#ffffff;
+  background:var(--card);
+  border:1px solid var(--border);
   border-radius:14px;
   padding:14px;
-  box-shadow:0 10px 25px rgba(0,0,0,.06);
+  transition:.2s;
   cursor:pointer;
-  transition:.25s;
-  border:1px solid #eef2f7;
 }
 
 .member-card:hover{
-  transform:translateY(-5px);
-  box-shadow:0 15px 30px rgba(0,0,0,.10);
+  transform:translateY(-3px);
+  border-color:var(--accent);
 }
 
 .member-name{
   font-weight:700;
-  color:#4f46e5;
+  font-size:15px;
+  color:#0f172a;
   margin-bottom:6px;
+}
+
+.member-card div{
+  font-size:13px;
+  color:var(--muted);
+  margin-top:2px;
+}
+
+/* PROGRESS */
+.progress{
+  width:100%;
+  height:8px;
+  background:#e5e7eb;
+  border-radius:10px;
+  margin-top:10px;
+  overflow:hidden;
+}
+
+.progress-bar{
+  height:100%;
+  background:linear-gradient(90deg,#4f46e5,#22c55e);
+  transition:width .3s ease;
 }
 
 /* SUMMARY */
@@ -74,55 +106,67 @@ h2{
 }
 
 .summary-card{
-  background:#fff;
-  padding:16px;
+  background:var(--card);
+  border:1px solid var(--border);
   border-radius:14px;
-  box-shadow:0 10px 25px rgba(0,0,0,.06);
+  padding:14px;
   text-align:center;
-  border:1px solid #eef2f7;
 }
 
 .summary-card h3{
-  font-size:13px;
-  color:#6b7280;
+  font-size:12px;
+  color:var(--muted);
 }
 
 .summary-card p{
-  font-size:20px;
+  font-size:18px;
   font-weight:800;
   margin-top:6px;
 }
 
-/* COLORS */
-.total-given{
-  border-left:5px solid #3b82f6;
-}
+.border-blue{border-left:4px solid var(--accent);}
+.border-green{border-left:4px solid var(--green);}
+.border-red{border-left:4px solid var(--red);}
+.border-yellow{border-left:4px solid var(--yellow);}
 
-.total-expenses{
-  border-left:5px solid #ef4444;
-}
-
-.remaining{
-  border-left:5px solid #22c55e;
-}
-
-.per-person{
-  border-left:5px solid #f59e0b;
-}
-
-/* EXPENSES */
+/* EXPENSE */
 .expense-grid{
-  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
 }
 
 .expense-card{
-  background:#fff;
-  padding:12px 14px;
+  background:var(--card);
+  border:1px solid var(--border);
   border-radius:12px;
-  box-shadow:0 10px 25px rgba(0,0,0,.06);
+  padding:12px 14px;
   display:flex;
   justify-content:space-between;
-  border:1px solid #eef2f7;
+}
+
+/* FOOTER */
+.footer{
+  margin-top:22px;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+}
+
+.box{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:14px;
+  padding:14px;
+}
+
+.box h3{
+  font-size:13px;
+  margin-bottom:8px;
+}
+
+.box p{
+  font-size:13px;
+  color:var(--muted);
+  margin:5px 0;
 }
 
 /* MODAL */
@@ -130,43 +174,33 @@ h2{
   display:none;
   position:fixed;
   inset:0;
-  background:rgba(15,23,42,.6);
+  background:rgba(0,0,0,.4);
+  backdrop-filter:blur(5px);
   justify-content:center;
   align-items:center;
   padding:20px;
 }
 
 .modal-content{
-  background:#fff;
+  background:var(--card);
+  border-radius:14px;
+  padding:16px;
   width:100%;
   max-width:420px;
-  border-radius:16px;
-  padding:20px;
-  box-shadow:0 20px 40px rgba(0,0,0,.2);
-  position:relative;
 }
 
 .close{
-  position:absolute;
-  right:15px;
-  top:10px;
-  font-size:26px;
+  float:right;
   cursor:pointer;
-  color:#6b7280;
+  font-size:20px;
+  color:var(--muted);
 }
 
-.modal h2{
-  margin-bottom:10px;
-  color:#4f46e5;
+@media(max-width:768px){
+  .footer{
+    grid-template-columns:1fr;
+  }
 }
-
-.modal p{
-  background:#f9fafb;
-  padding:10px;
-  border-radius:10px;
-  margin:8px 0;
-}
-
 </style>
 </head>
 
@@ -183,19 +217,39 @@ h2{
 <h2>Expenses</h2>
 <div class="grid expense-grid" id="expenses"></div>
 
+<!-- FOOTER -->
+<div class="footer">
+
+  <div class="box">
+    <h3>📌 Trip Info</h3>
+    <p>11th Night — 10 PM (Saidabad)</p>
+    <p>13th Night — 10 PM (Sunamganj Return)</p>
+    <p>Pay before 11th</p>
+  </div>
+
+  <div class="box">
+    <h3>🎒 Essentials</h3>
+    <p>Mobile + Charger</p>
+    <p>Clothes / Shorts</p>
+    <p>UNO Cards</p>
+    <p>Football / Goggles</p>
+  </div>
+
+</div>
+
 <!-- MODAL -->
 <div class="modal" id="modal">
   <div class="modal-content">
     <span class="close" id="close">&times;</span>
-    <h2 id="mName"></h2>
-    <p><b>Given:</b> <span id="mGiven"></span></p>
-    <p><b>Have To Pay:</b> <span id="mPay"></span></p>
+    <h3 id="mName"></h3>
+    <p id="mGiven"></p>
+    <p id="mPay"></p>
   </div>
 </div>
 
 <script>
 
-const url = "https://docs.google.com/spreadsheets/d/1kMv6C7xlD64hhJFb9yJdFxUp6AX1jXM96HaC_BCRbNM/export?format=csv&gid=0";
+const url="https://docs.google.com/spreadsheets/d/1kMv6C7xlD64hhJFb9yJdFxUp6AX1jXM96HaC_BCRbNM/export?format=csv&gid=0";
 
 function clean(v){
   return (v||"").replace(/^"(.*)"$/,'$1');
@@ -209,80 +263,104 @@ fetch(url)
 
   document.getElementById("title").innerText = rows[0][0];
 
-  // MEMBERS
-  const members = rows.slice(3,12).map(r=>r.slice(0,3));
+  // 🧠 FIXED LOGIC (Paid + Due = Total)
+  const members = rows.slice(3, 12);
 
-  document.getElementById("members").innerHTML =
-    members.map(m=>`
+  document.getElementById("members").innerHTML = members.map(r => {
+
+    const name = r[0];
+
+    const paid = Number(r[1]) || 0; // already paid
+    const due = Number(r[2]) || 0;  // remaining
+
+    const total = paid + due;
+
+    let percent = 0;
+    if (total > 0) {
+      percent = (paid / total) * 100;
+    }
+
+    percent = Math.max(0, Math.min(percent, 100));
+
+    return `
       <div class="member-card"
-        data-name="${m[0]}"
-        data-given="${m[1]}"
-        data-pay="${m[2]}">
+        data-name="${name}"
+        data-given="${paid}"
+        data-due="${due}">
 
-        <div class="member-name">${m[0]}</div>
-        <div>💰 Given: ${m[1]}</div>
-        <div>📌 Pay: ${m[2]}</div>
+        <div class="member-name">${name}</div>
+
+        <div>Paid: ${paid} ৳</div>
+        <div>Due: ${due} ৳</div>
+
+        <div class="progress">
+          <div class="progress-bar" style="width:${percent}%"></div>
+        </div>
+
+        <div style="font-size:11px;color:#64748b;margin-top:6px;">
+          ${percent.toFixed(1)}% completed
+        </div>
+
       </div>
-    `).join("");
+    `;
+  }).join("");
 
   // EXPENSES
-  let expenses=[];
+  let expenses = [];
   for(let i=18;i<rows.length;i++){
     if(rows[i][0]) expenses.push(rows[i].slice(0,2));
   }
 
   document.getElementById("expenses").innerHTML =
-    expenses.map(e=>`
-      <div class="expense-card">
-        <span>${e[0]}</span>
-        <b>৳ ${e[1]}</b>
-      </div>
-    `).join("");
+  expenses.map(e=>`
+    <div class="expense-card">
+      <span>${e[0]}</span>
+      <b>${e[1]} ৳</b>
+    </div>
+  `).join("");
 
-  const totalExpenses = expenses.reduce((s,e)=>s+(+e[1]||0),0);
+  const totalExpenses = expenses.reduce((s,e)=> s + (Number(e[1])||0), 0);
 
-  const get=(r,c)=>rows[r]?.[c]||"";
+  const get = (r,c)=> rows[r]?.[c] || "";
 
-  // SUMMARY
-  document.getElementById("summary").innerHTML=`
-    <div class="summary-card total-given">
+  document.getElementById("summary").innerHTML = `
+    <div class="summary-card border-blue">
       <h3>Total Given</h3>
-      <p>৳ ${get(5,4)}</p>
+      <p>${get(5,4)}</p>
     </div>
 
-    <div class="summary-card total-expenses">
-      <h3>Total Expenses</h3>
-      <p>৳ ${totalExpenses}</p>
+    <div class="summary-card border-red">
+      <h3>Expenses</h3>
+      <p>${totalExpenses}</p>
     </div>
 
-    <div class="summary-card remaining">
+    <div class="summary-card border-green">
       <h3>Remaining</h3>
-      <p>৳ ${get(8,4)}</p>
+      <p>${get(8,4)}</p>
     </div>
 
-    <div class="summary-card per-person">
+    <div class="summary-card border-yellow">
       <h3>Per Person</h3>
-      <p>৳ ${get(5,5)}</p>
+      <p>${get(5,5)}</p>
     </div>
   `;
 
   // MODAL
-  const modal=document.getElementById("modal");
+  const modal = document.getElementById("modal");
 
   document.querySelectorAll(".member-card").forEach(el=>{
-    el.onclick=()=>{
-      document.getElementById("mName").innerText=el.dataset.name;
-      document.getElementById("mGiven").innerText=el.dataset.given;
-      document.getElementById("mPay").innerText=el.dataset.pay;
-      modal.style.display="flex";
+    el.onclick = ()=>{
+      document.getElementById("mName").innerText = el.dataset.name;
+      document.getElementById("mGiven").innerText = "Paid: " + el.dataset.given;
+      document.getElementById("mPay").innerText = "Due: " + el.dataset.due;
+      modal.style.display = "flex";
     }
   });
 
-  document.getElementById("close").onclick=()=>modal.style.display="none";
-  modal.onclick=(e)=>{if(e.target===modal) modal.style.display="none";};
+  document.getElementById("close").onclick = ()=> modal.style.display="none";
+  modal.onclick = (e)=>{ if(e.target===modal) modal.style.display="none"; };
 
 });
-
 </script>
 
 </body>
