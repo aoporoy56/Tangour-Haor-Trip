@@ -52,6 +52,88 @@ h2{
   gap:12px;
 }
 
+/* TOP INFO & ESSENTIALS */
+.top-info{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+  margin-bottom:10px;
+}
+
+.box{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:14px;
+  padding:14px;
+}
+
+.box h3{
+  font-size:14px;
+  margin-bottom:10px;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 6px;
+}
+
+.box p{
+  font-size:13px;
+  color:var(--text);
+  margin:6px 0;
+}
+
+.essentials-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 6px;
+}
+
+.essentials-list span {
+  font-size: 13px;
+  color: var(--muted);
+}
+
+/* SUMMARY */
+.summary-grid{
+  grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+}
+
+.summary-card{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:14px;
+  padding:14px;
+  text-align:center;
+}
+
+.summary-card h3{
+  font-size:12px;
+  color:var(--muted);
+}
+
+.summary-card p{
+  font-size:18px;
+  font-weight:800;
+  margin-top:6px;
+}
+
+.border-blue{border-left:4px solid var(--accent);}
+.border-green{border-left:4px solid var(--green);}
+.border-red{border-left:4px solid var(--red);}
+.border-yellow{border-left:4px solid var(--yellow);}
+
+/* EXPENSE */
+.expense-grid{
+  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+}
+
+.expense-card{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:12px;
+  padding:12px 14px;
+  display:flex;
+  justify-content:space-between;
+}
+
 /* MEMBERS */
 .members-grid{
   grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
@@ -100,75 +182,6 @@ h2{
   transition:width .3s ease;
 }
 
-/* SUMMARY */
-.summary-grid{
-  grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
-}
-
-.summary-card{
-  background:var(--card);
-  border:1px solid var(--border);
-  border-radius:14px;
-  padding:14px;
-  text-align:center;
-}
-
-.summary-card h3{
-  font-size:12px;
-  color:var(--muted);
-}
-
-.summary-card p{
-  font-size:18px;
-  font-weight:800;
-  margin-top:6px;
-}
-
-.border-blue{border-left:4px solid var(--accent);}
-.border-green{border-left:4px solid var(--green);}
-.border-red{border-left:4px solid var(--red);}
-.border-yellow{border-left:4px solid var(--yellow);}
-
-/* EXPENSE */
-.expense-grid{
-  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
-}
-
-.expense-card{
-  background:var(--card);
-  border:1px solid var(--border);
-  border-radius:12px;
-  padding:12px 14px;
-  display:flex;
-  justify-content:space-between;
-}
-
-/* FOOTER */
-.footer{
-  margin-top:22px;
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:12px;
-}
-
-.box{
-  background:var(--card);
-  border:1px solid var(--border);
-  border-radius:14px;
-  padding:14px;
-}
-
-.box h3{
-  font-size:13px;
-  margin-bottom:8px;
-}
-
-.box p{
-  font-size:13px;
-  color:var(--muted);
-  margin:5px 0;
-}
-
 /* MODAL */
 .modal{
   display:none;
@@ -197,7 +210,7 @@ h2{
 }
 
 @media(max-width:768px){
-  .footer{
+  .top-info{
     grid-template-columns:1fr;
   }
 }
@@ -208,8 +221,43 @@ h2{
 
 <h1 id="title">Loading...</h1>
 
-<h2>Members</h2>
-<div class="grid members-grid" id="members"></div>
+<!-- TOP INFO & ESSENTIALS section -->
+<div class="top-info">
+  <div class="box">
+    <h3>📌 Trip Info</h3>
+    <p><b>11th Night</b> — 10 PM (Saidabad)</p>
+    <p><b>13th Night</b> — 10 PM (Sunamganj Return)</p>
+    <p style="color: var(--red); font-weight: 600;">⚠️ Pay before 11th</p>
+  </div>
+
+  <div class="box">
+    <h3>🎒 Essentials Packing List</h3>
+    <div class="essentials-list">
+      <span>1. Full pant</span>
+      <span>2. Shirt</span>
+      <span>3. T-shirt</span>
+      <span>4. Short pant</span>
+      <span>5. Underwear</span>
+      <span>6. Gamcha</span>
+      <span>7. Shoe (2 types)</span>
+      <span>8. Charger</span>
+      <span>9. Earphone</span>
+      <span>10. UNO card</span>
+      <span>11. Football</span>
+      <span>12. Sound box</span>
+      <span>13. Waterproof case</span>
+      <span>14. Sunglasses</span>
+      <span>15. Bag</span>
+      <span>16. Polithin</span>
+      <span>17. Mobile stand</span>
+      <span>18. Power bank</span>
+      <span>19. Tooth brush</span>
+      <span>20. Cap</span>
+      <span>21. Sunscreen</span>
+      <span>22. Wallet</span>
+    </div>
+  </div>
+</div>
 
 <h2>Summary</h2>
 <div class="grid summary-grid" id="summary"></div>
@@ -217,25 +265,8 @@ h2{
 <h2>Expenses</h2>
 <div class="grid expense-grid" id="expenses"></div>
 
-<!-- FOOTER -->
-<div class="footer">
-
-  <div class="box">
-    <h3>📌 Trip Info</h3>
-    <p>11th Night — 10 PM (Saidabad)</p>
-    <p>13th Night — 10 PM (Sunamganj Return)</p>
-    <p>Pay before 11th</p>
-  </div>
-
-  <div class="box">
-    <h3>🎒 Essentials</h3>
-    <p>Mobile + Charger</p>
-    <p>Clothes / Shorts</p>
-    <p>UNO Cards</p>
-    <p>Football / Goggles</p>
-  </div>
-
-</div>
+<h2>Members</h2>
+<div class="grid members-grid" id="members"></div>
 
 <!-- MODAL -->
 <div class="modal" id="modal">
@@ -248,7 +279,6 @@ h2{
 </div>
 
 <script>
-
 const url="https://docs.google.com/spreadsheets/d/1kMv6C7xlD64hhJFb9yJdFxUp6AX1jXM96HaC_BCRbNM/export?format=csv&gid=0";
 
 function clean(v){
@@ -263,23 +293,19 @@ fetch(url)
 
   document.getElementById("title").innerText = rows[0][0];
 
-  // 🧠 FIXED LOGIC (Paid + Due = Total)
+  // MEMBERS PROCESS
   const members = rows.slice(3, 13);
 
   document.getElementById("members").innerHTML = members.map(r => {
-
     const name = r[0];
-
-    const paid = Number(r[1]) || 0; // already paid
-    const due = Number(r[2]) || 0;  // remaining
+    const paid = Number(r[1]) || 0; 
+    const due = Number(r[2]) || 0;  
 
     const total = paid + due;
-
     let percent = 0;
     if (total > 0) {
       percent = (paid / total) * 100;
     }
-
     percent = Math.max(0, Math.min(percent, 100));
 
     return `
@@ -287,20 +313,15 @@ fetch(url)
         data-name="${name}"
         data-given="${paid}"
         data-due="${due}">
-
         <div class="member-name">${name}</div>
-
         <div>Paid: ${paid} ৳</div>
         <div>Due: ${due} ৳</div>
-
         <div class="progress">
           <div class="progress-bar" style="width:${percent}%"></div>
         </div>
-
         <div style="font-size:11px;color:#64748b;margin-top:6px;">
           ${percent.toFixed(1)}% completed
         </div>
-
       </div>
     `;
   }).join("");
@@ -320,7 +341,6 @@ fetch(url)
   `).join("");
 
   const totalExpenses = expenses.reduce((s,e)=> s + (Number(e[1])||0), 0);
-
   const get = (r,c)=> rows[r]?.[c] || "";
 
   document.getElementById("summary").innerHTML = `
@@ -328,17 +348,14 @@ fetch(url)
       <h3>Total Given</h3>
       <p>${get(5,4)}</p>
     </div>
-
     <div class="summary-card border-red">
       <h3>Expenses</h3>
       <p>${totalExpenses}</p>
     </div>
-
     <div class="summary-card border-green">
       <h3>Remaining</h3>
       <p>${get(8,4)}</p>
     </div>
-
     <div class="summary-card border-yellow">
       <h3>Per Person</h3>
       <p>${get(5,5)}</p>
@@ -351,8 +368,8 @@ fetch(url)
   document.querySelectorAll(".member-card").forEach(el=>{
     el.onclick = ()=>{
       document.getElementById("mName").innerText = el.dataset.name;
-      document.getElementById("mGiven").innerText = "Paid: " + el.dataset.given;
-      document.getElementById("mPay").innerText = "Due: " + el.dataset.due;
+      document.getElementById("mGiven").innerText = "Paid: " + el.dataset.given + " ৳";
+      document.getElementById("mPay").innerText = "Due: " + el.dataset.due + " ৳";
       modal.style.display = "flex";
     }
   });
